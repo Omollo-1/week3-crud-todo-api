@@ -11,7 +11,7 @@ connectDB(); // Connect to MongoDB
 
 const app = express();
 app.use(express.json()); // Parse JSON bodies
-app.use(logRequest);
+
 
 
 const corsOptions = {
@@ -22,7 +22,7 @@ app.use(cors(corsOptions));
 app.use(logRequest);
 
 // GET All – Read
-app.get('/todos', async (req, res) => {
+app.get('/todos', async (req, res, next) => {
   const todos =  await Todo.find({});
   res.status(200).json(todos); // Send array as JSON
 });
